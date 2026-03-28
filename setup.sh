@@ -26,4 +26,20 @@ for f in .zshrc .vimrc; do
   echo "Installed ${f}"
 done
 
-echo "Done. Reload shell config with: source ~/.zshrc"
+# ── vim-plug ───────────────────────────────────────────────────────────────
+# Install vim-plug if not already present. After this runs, open vim and
+# run :PlugInstall to download all plugins declared in .vimrc.
+VIM_PLUG_PATH="${HOME}/.vim/autoload/plug.vim"
+if [[ ! -f "${VIM_PLUG_PATH}" ]]; then
+  echo "Installing vim-plug..."
+  curl -fLo "${VIM_PLUG_PATH}" --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  echo "vim-plug installed."
+else
+  echo "vim-plug already installed, skipping."
+fi
+
+echo ""
+echo "Done. Next steps:"
+echo "  1. Reload shell config:  source ~/.zshrc"
+echo "  2. Install vim plugins:  open vim and run :PlugInstall"
