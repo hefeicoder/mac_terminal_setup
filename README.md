@@ -16,10 +16,13 @@ Dotfiles (`.zshrc`, `.vimrc`) and scripts to sync them across machines.
 - **Plugins**: NERDTree (F2), NERDCommenter, vim-airline, vim-gitgutter, easymotion, molokai
 - **Defaults**: 4-space indent, relative line numbers, smart search, system clipboard
 
-## On this machine (upload)
+## Sync changes
+
+Edit files in this repo, then:
 
 ```bash
-./upload.sh
+git add .zshrc .vimrc
+git commit -m "Update dotfiles"
 git push
 ```
 
