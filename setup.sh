@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Install .zshrc and .vimrc from this repo into the home directory.
+# Install zshrc and vimrc from this repo into the home directory as dotfiles.
 # Backs up existing files if present.
 
 set -e
@@ -16,14 +16,15 @@ backup_if_exists() {
 }
 
 echo "Installing dotfiles from ${REPO_DIR} to ${HOME_DIR}..."
-for f in .zshrc .vimrc; do
+# Files are stored without leading dot in the repo; installed with dot in home dir.
+for f in zshrc vimrc; do
   if [[ ! -f "${REPO_DIR}/${f}" ]]; then
     echo "Warning: ${REPO_DIR}/${f} not found, skipping."
     continue
   fi
-  backup_if_exists "${f}"
-  cp "${REPO_DIR}/${f}" "${HOME_DIR}/${f}"
-  echo "Installed ${f}"
+  backup_if_exists ".${f}"
+  cp "${REPO_DIR}/${f}" "${HOME_DIR}/.${f}"
+  echo "Installed .${f}"
 done
 
 # ── vim-plug ───────────────────────────────────────────────────────────────
